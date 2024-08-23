@@ -1,0 +1,1 @@
+<div class="g-page" data-rel="publisher" data-href="//plus.google.com/117783327805487850261" data-rel="author"></div>

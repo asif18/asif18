@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+  <title>Login with Googlle using Javascript API</title>
+</head>
+<body>
+  <div id="google-login-button"></div>
+  <br/>
+  <a id="logout-button" onclick="onGoogleLogout()" style="display: none;">Logout</a>
+<script type="text/javascript">
+
+function onGoogleAPILoad() {
+  gapi.load('auth2', () => {
+    const CLIENT_ID = '201122173774-2de52d84qbn5co6fo7r70sqbchpqrdvs.apps.googleusercontent.com';
+    gapi.auth2.init({ client_id: CLIENT_ID }).then(() => renderGoogleLoginButton());
+  });
+}
+
+function renderGoogleLoginButton() {
+  gapi.signin2.render('google-login-button', {
+    'scope': 'profile email',
+    'width': 240,
+    'height': 40,
+    'longtitle': true,
+    'theme': 'light',
+    'onsuccess': (event) => onGoogleLoginSuccess(event),
+    'onfailure': (event) => onGoogleLoginFailure(event)
+  });
+}
+
+function onGoogleLoginSuccess(googleUser) {
+  const profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  document.getElementById('logout-button').style.display = 'block';
+}
+
+function onGoogleLoginFailure(event) {
+  console.log(event);
+}
+
+function onGoogleLogout() {
+  const auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(() => {
+    document.getElementById('logout-button').style.display = 'none';
+    console.log('Logged out');
+  });
+}
+</script>
+<script src="https://apis.google.com/js/platform.js?onload=onGoogleAPILoad" async defer></script>
+</body>
+</html>

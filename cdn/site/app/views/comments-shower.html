@@ -1,0 +1,37 @@
+<div style="position: relative;">
+	<sectionloader loading="model.isLoading"></sectionloader>
+	<div class="media parent-comments" ng-repeat="comment in model.commentsData" ng-class="{ 'admin-comment' : (comment.posted_by == 'admin') }">
+		<div class="media-left">
+			<img ng-src="{{ model.assetsUrl }}site/img/img_avatar3.png" class="media-object" style="width:60px">
+		</div>
+		<div class="media-body">
+			<h4 class="media-heading">{{ comment.name }} said..,</h4>
+			<p>{{ comment.postDate }}</p>
+			<p ng-bind-html="comment.comment"></p>
+			
+			<!-- Nested media object -->
+			<div class="media replies" ng-repeat="replies in comment.replies" ng-class="{ 'admin-comment' : (replies.posted_by == 'admin') }">
+				<div class="media-left">
+					<img ng-src="{{ model.assetsUrl }}site/img/img_avatar3.png" class="media-object" style="width:60px">
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">{{ replies.name }} said..,</h4>
+					<p>{{ replies.postDate }}</p>
+					<p ng-bind-html="replies.comment"></p>
+				</div>
+			</div>
+
+			<!-- /Nested media object -->
+			
+			<div class="form-group v-offset-top-10px">
+				<button class="btn btn-default" ng-click="showReply = !showReply"> {{ (showReply) ? 'Cancel' : 'Reply'; }} </button>
+			</div>
+			
+			<div class="reply">
+				<h5 ng-show="showReply">Reply</h5>
+				<comment-form ng-show="showReply" article-id="model.articleId" comment-type="'reply'" comment-id="comment.id" ></comment-form>
+			</div>
+		</div>
+
+	</div>
+</div>

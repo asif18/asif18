@@ -1,0 +1,1 @@
+<a href="https://twitter.com/mohamedasif18" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @<?php echo ucfirst(SITE_NAME); ?></a>

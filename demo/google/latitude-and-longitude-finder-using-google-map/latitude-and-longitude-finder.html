@@ -1,0 +1,146 @@
+<!--
+Latitude and logitude finder using google map by Asif18.com
+You can use this script for default map view functions. Eg: getting latitude and longitude from backend and show the accurate place in front end (User).
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Latitude and longitude finder using google map</title>
+<meta name="keywords" content="latitude and longitude, latitude and longitude finder using google map, latitude and longitude finder, get latitude and Longitude of a point, get latitude and longitude from city name" />
+<meta name="description" content="Here is one of my script to find a points Latitude and Longitude using Google map. This will show you the Latitude and Longitude of a place using Google maps. A simple latitude and longitude finder" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<style type="text/css">
+body{
+	margin: 0;
+	padding: 0;
+	font-family: arial;
+	color: #2C2C2C;
+	font-size: 14px;
+}
+h1 a{
+	color:#2C2C2C;
+	text-decoration:none;
+}
+h1 a:hover{
+	text-decoration:underline;
+}
+a{
+	color: #069FDF;
+}
+.wrapper{
+	margin: 0 auto;
+	width: 1000px;
+}
+.getter{
+	width: 700px;
+	margin: 0 auto;
+	border:2px dashed #17A3F7;
+	padding: 20px;
+}
+#bd {
+    position: relative;
+}
+#gmap {
+    width: 100%;
+    height: 500px;
+}
+</style>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyCl52oXUg8JLvdpbpZhdMKzFi9S6T81LUI"></script>
+<script type="text/javascript">
+var map;
+var marker = false;
+function initialize(){
+	// Set default latitude, longitude and zoom to set default location when page loads
+	var DefaultLat = 37.89989151289267;
+	var DefaultLon = 2.3405680060386658;
+	var DefaultZoom = 2;
+	
+	// Set to the default
+	var myLatlng = new google.maps.LatLng(DefaultLat, DefaultLon);
+	var myOptions = {
+		zoom: DefaultZoom,
+		center: myLatlng,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	}
+	
+	// Append map to tge ID
+	map = new google.maps.Map(document.getElementById("gmap"), myOptions);
+	marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map
+	});
+	
+	// Dragging function (center_changed)
+	google.maps.event.addListener(map, 'center_changed', function(){
+		var location = map.getCenter();
+		document.getElementById("lat").innerHTML = location.lat();
+		document.getElementById("lon").innerHTML = location.lng();
+		placeMarker(location);
+	});
+	
+	// Zoomin functions (zoom_changed)
+	google.maps.event.addListener(map, 'zoom_changed', function(){
+		zoomLevel = map.getZoom();
+		document.getElementById("zoom_level").innerHTML = zoomLevel;
+	});
+	
+	// Info window to show any custom contents
+	var infowindow = new google.maps.InfoWindow({
+		size: new google.maps.Size(150, 300)
+	});
+	
+	// Open infiwindow when click the marker
+	google.maps.event.addListener(marker, 'click', function(){
+        infowindow.setContent('Set any custom contents here you ca use HTML <i>italic</i>, <b>Bold</b> also');
+        infowindow.open(map, marker);
+    });
+	
+	// Call any function when double click the marker, here i called zoom
+	google.maps.event.addListener(marker, 'dblclick', function(){
+		zoomLevel = map.getZoom()+1;
+		if (zoomLevel == 20){
+			zoomLevel = 10;
+		}  
+		document.getElementById("zoom_level").innerHTML = zoomLevel;
+		map.setZoom(zoomLevel);
+	});
+	
+	// Append values to the htmk elements
+	document.getElementById("zoom_level").innerHTML = DefaultZoom;
+	document.getElementById("lat").innerHTML = DefaultLat;
+	document.getElementById("lon").innerHTML = DefaultLat;
+}
+
+// Set 
+function placeMarker(location){
+	var clickedLocation = new google.maps.LatLng(location);
+	marker.setPosition(location);
+}
+
+// call the function when page loads
+window.onload = function(){ initialize(); };
+</script>
+</head>
+<body>
+<div class="wrapper">
+    <div id="gmap"></div> <!-- Map will be shown in this div-->
+    <h1><a href="">Latitude and Longitude finder using google maps</a></h1>
+    <p>Drag the map anywhere to get the Latitude and Longitude of the place. Use map options to get Zoom, Map view options and Street view. Click the red marker to see the custom information-infowindow()</p>
+    <table class="getter">
+    <tr>
+    	<td>Latitude:</td>
+        <td><span id="lat"></span></td>
+	</tr>
+    <tr>
+    	<td>Longitude:</td>
+        <td><span id="lon"></span></td>
+	</tr>
+    <tr>
+    	<td>Zoom Level:</td>
+        <td><span id="zoom_level"></span></td>
+	</tr>
+    </table>
+</div>
+</body>
+</html> 

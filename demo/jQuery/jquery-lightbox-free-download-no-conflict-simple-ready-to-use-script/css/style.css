@@ -1,0 +1,44 @@
+body{
+	margin:0;
+	padding:0;
+	font-family:Arial;
+}
+.as_clear{
+	clear:both;
+}
+.as_a{
+	text-decoration:underline;
+	color:#17A3F7;
+	cursor:pointer;
+}
+.as_lightbox_wrapper{
+	width:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:100;
+	background:url(../images/as_popup_wrapper_bg.png);
+	display:none;
+}
+.as_lightbox_close{
+	position:absolute;
+	right:0;
+	z-index:102;
+	height:32px;
+	width:32px;
+	top:-25px;
+	right:-25px;
+	cursor:pointer;
+}
+.as_lightbox_container{
+	z-index:101;
+	position:fixed;
+	width:500px;
+	height:400px;
+	background:#FFF;
+	left:31%;
+	top:13%;
+	padding:10px;
+	border-radius:2px;
+	display:none;
+}

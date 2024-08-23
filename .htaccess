@@ -1,0 +1,81 @@
+RewriteEngine on
+
+Header set Access-Control-Allow-Origin: "*"
+
+# If the user types "index.php" or "admin.php".
+RewriteCond $1 !^(index\.php|admin\.php|images|robots\.txt)
+
+# If the user types just "admin".
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^admin$ admin\.php [L,QSA]
+
+# If the user enter in any admin section, like "admin/section".
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^admin\/(.*)$ admin\.php/$1 [L,QSA]
+
+# If the user types any site section, like "site/section".
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index\.php/$1 [L,QSA]
+
+#Force non-www:
+#RewriteCond %{HTTP_HOST} ^www\.asif18\.com [NC]
+#RewriteRule ^(.*)$ http://asif18.com/$1 [L,R=301]
+
+# If https send to https://www.
+RewriteCond %{HTTP_HOST} ^asif18.com$ [NC]
+RewriteCond %{HTTPS} on
+RewriteRule ^(.*)$ https://www.asif18.com/$1 [R=301,L]
+
+# If http send to https://www.
+RewriteCond %{HTTP_HOST} ^asif18.com$ [NC]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://www.asif18.com/$1 [R=301,L]
+
+# If http send to http://www.
+#RewriteCond %{HTTP_HOST} ^asif18.com$ [NC]
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ http://www.asif18.com/$1 [R=301,L]
+
+# Enable GZIP
+<ifmodule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</ifmodule>
+
+# Expires Headers - 2678400s = 31 days
+<ifmodule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 seconds"
+  ExpiresByType text/html "access plus 7200 seconds"
+  ExpiresByType image/gif "access plus 2678400 seconds"
+  ExpiresByType image/jpeg "access plus 2678400 seconds"
+  ExpiresByType image/png "access plus 2678400 seconds"
+  ExpiresByType text/css "access plus 518400 seconds"
+  ExpiresByType text/javascript "access plus 2678400 seconds"
+  ExpiresByType application/x-javascript "access plus 2678400 seconds"
+</ifmodule>
+
+# Cache Headers
+<ifmodule mod_headers.c>
+  # Cache specified files for 31 days
+  <filesmatch "\.(ico|flv|jpg|jpeg|png|gif|css|swf)$">
+  Header set Cache-Control "max-age=2678400, public"
+  </filesmatch>
+  # Cache HTML files for a couple hours
+  <filesmatch "\.(html|htm)$">
+  Header set Cache-Control "max-age=7200, private, must-revalidate"
+  </filesmatch>
+  # Cache PDFs for a day
+  <filesmatch "\.(pdf)$">
+  Header set Cache-Control "max-age=86400, public"
+  </filesmatch>
+  # Cache Javascripts for 31 days
+  <filesmatch "\.(js)$">
+  Header set Cache-Control "max-age=2678400, private"
+  </filesmatch>
+</ifmodule>

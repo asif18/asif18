@@ -1,0 +1,47 @@
+<section class="wrapper pos-rel">
+	<sectionloader loading="model.sectionLoader"></sectionloader>
+	<div class="container-base">
+		<fieldset>    	
+			<legend>Articles</legend>
+			
+			<div class="panel panel-default">
+				<div class="panel-body">
+					
+					<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Topic</th>
+							<th>Category</th>
+							<th>Status</th>
+							<th>Posted On</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr ng-repeat="article in model.articles" ng-if="model.articles.length > 0">
+							<td>{{ article.article_topic }}</td>
+							<td>{{ article.cat_name }}</td>
+							<td>{{ article.article_status == 'A' ? 'Active' : 'Deactive' }}</td>
+							<td>{{ article.posted_date }}</td>
+							<td class="text-center">
+								<a ui-sref="app.article({ articleId: article.article_id })" uib-tooltip="Edit"><em class="fa fa-edit"></em></a>&nbsp;
+								<a href="javascript:;" ng-click="performAction(article.article_id, 'activate')" uib-tooltip="Activate" ng-if="article.article_status == 'D'"><em class="fa fa-check"></em></a>
+								<a href="javascript:;" ng-click="performAction(article.article_id, 'deactivate')" uib-tooltip="De-Activate" ng-if="article.article_status == 'A'"><em class="fa fa-close"></em></a>
+							</td>
+						</tr>
+						
+						<tr ng-if="model.articles.length <= 0">
+							<td colspan="6">No records found</td>
+						</tr>
+						
+					</tbody>
+					</table>
+					
+				</div>
+			</div>
+			
+		</fieldset>	
+	</div>
+</div>
+<div class="clearfix"></div>

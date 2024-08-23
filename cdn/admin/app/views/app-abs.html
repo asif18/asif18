@@ -1,0 +1,44 @@
+<header class="top-header">
+	
+	<div class="logo col-md-2">
+		<img ng-src="../cdn/admin/img/asif18-logo.png" alt="asif18" class="img-responsive" />
+	</div>
+	
+
+	<div class="col-md-2 pull-right">
+		<span uib-dropdown><a href id="header-dropdown" uib-dropdown-toggle>Hi {{ vm.user.name }} <span class="caret"></span></a>
+		<ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="header-dropdown">
+			<li><a href="logout">Logout</a></li>
+		</ul>
+		</span>
+	</div>
+	
+	<div class="clearfix"></div>
+</header>
+
+
+<div id="sidebar" class="nav-collapse">
+	<!-- sidebar menu start-->
+	<div class="leftside-navigation">
+		<ul class="sidebar-menu" id="nav-accordion">
+			
+			<li ng-repeat="menu in model.menuItems">
+				<a href="#" ui-sref="{{ menu.name }}" ui-sref-opts="{reload: true, inherit: false}" ng-class="{ 'active': (currentState == menu.name) }">
+					<i class="{{ menu.icon }}"></i>
+					<span>{{ menu.label }}</span>
+				</a>
+			</li>
+			
+		</ul>
+	</div>      
+	<!-- sidebar menu end-->
+</div>
+<div class="clearfix"></div>
+
+<section id="main-content">
+	<div ui-view="main" class="main"></div>
+</div>
+
+<footer>
+	&copy; {{ model.year }} - {{ model.appName | capitalize }}
+</footer>

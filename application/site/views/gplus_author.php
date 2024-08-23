@@ -1,0 +1,1 @@
+<div class="g-plus" data-href="//plus.google.com/102644259301015068991" data-rel="author"></div>

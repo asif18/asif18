@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Asif18 Custom placeholder jquery like HTML5 by Asif18.com</title>
+<script type="text/javascript" src="jquery.1.9.1.js"></script>
+<script type="text/javascript" src="jquery.placeholder.js"></script>
+<style>
+body{
+	margin: 0;
+	padding: 0;
+	font-family: arial;
+	color: #2C2C2C;
+	font-size: 14px;
+}
+h1 a{
+	color:#2C2C2C;
+	text-decoration:none;
+}
+h1 a:hover{
+	text-decoration:underline;
+}
+a{
+	color: #069FDF;
+}
+.wrapper{
+	margin: 0 auto;
+	width: 1000px;
+}
+.mytable{
+	width: 700px;
+	margin: 0 auto;
+	border:2px dashed #17A3F7;
+	padding: 20px;
+}
+.input{
+	outline:none;
+	margin:0;
+	padding:0;
+	border:none;
+	border:1px solid #17A3F7;
+	padding:10px 13px;
+	width:200px;
+	font-weight:bold;
+	font-size:13px;
+	margin-bottom:15px;
+	font-family:Arial;
+	background:#FFF;
+}
+.input:hover, .input:focus{
+	box-shadow:0px 1px 3px #CCC inset;
+}
+.input.textarea{
+	resize:none;
+	height:100px;
+}
+.input.select{
+	background:#FFF;
+}
+.input.placeholder_click{
+	font-style:italic;
+	color:#898989;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:normal;
+}
+.input.error{
+	border:1px solid #FF3300;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".input").placeholder();
+	$("#submit").click(function(){
+		$(".input").removeClass("error");
+		if($("#someinput").val() == $("#someinput").prop("defaultValue") || $("#someinput").val() == ""){
+			alert('Enter the name');
+			$("#someinput").addClass("error")
+			return false;
+		}
+		if($("#somepassword").val() == $("#somepassword").prop("defaultValue") || $("#somepassword").val() == ""){
+			alert('Enter the password');
+			$("#somepassword").addClass("error")
+			return false;
+		}
+		if($("#someselectbox").val() == $("#someselectbox").prop("defaultValue") || $("#someselectbox").val() == ""){
+			alert('Select the country');
+			$("#someselectbox").addClass("error")
+			return false;
+		}
+		if($("#sometextarea").val() == $("#sometextarea").prop("defaultValue") || $("#sometextarea").val() == ""){
+			alert('Enter the address');
+			$("#sometextarea").addClass("error")
+			return false;
+		}
+	});
+});
+</script>
+</head>
+
+<body>
+<div class="wrapper">
+<h1><a href="http://asif18.com/14/jquery/custom-placeholder-using-jquery-like-html-5-placeholder---simple-jquery-placeholder/">Custom placeholder using jquery like HTML5 by Asif18.com</a></h1>
+<br/>
+<form action="#" method="get">
+<table class="mytable">
+<tr>
+	<td>Text box with custom placeholder</td>
+    <td><input type="text" name="someinput" id="someinput" class="input" value="Enter the name"/></td>
+</tr>
+<tr>
+	<td>Password field with custom placeholder</td>
+    <td><input type="text" name="somepassword" id="somepassword" class="input password" value="Enter the password"/></td>
+</tr>
+<tr>
+	<td>Select box with custom placeholder</td>
+    <td><select name="someselectbox" id="someselectbox" class="input select">
+    	<option value="" disabled selected>Select country</option>
+    	<option value="india">India</option>
+      	<option value="England">England</option>
+        <option value="Singapore">Singapore</option>
+        <option value="Australia">Spain</option>
+    	</select></td>
+</tr>
+<tr>
+	<td>Textare with custom placeholder</td>
+    <td><textarea name="sometextarea" id="sometextarea" class="input textarea">Enter the textarea contents</textarea></td>
+</tr>
+<tr>
+	<td colspan="2" align="center"><input type="submit" name="submit" id="submit" value="Submit Form" /></td>
+</tr>
+</table>
+</form>
+</div>
+</body>
+</html>

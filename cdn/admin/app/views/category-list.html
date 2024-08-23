@@ -1,0 +1,45 @@
+<section class="wrapper pos-rel">
+	<sectionloader loading="model.sectionLoader"></sectionloader>
+	<div class="container-base">
+		<fieldset>    	
+			<legend>Category</legend>
+			
+			<div class="panel panel-default">
+				<div class="panel-body">
+					
+					<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Title</th>
+							<th>Keywords</th>
+							<th>Description</th>
+							<th>Posted On</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr ng-repeat="category in model.categories" ng-if="model.categories.length > 0">
+							<td>{{ category.cat_name }}</td>
+							<td>{{ category.cat_title }}</td>
+							<td>{{ category.cat_keywords }}</td>
+							<td>{{ category.cat_description }}</td>
+							<td>{{ category.post_date }}</td>
+							<td class="text-center"><a ui-sref="app.category({ categoryId: category.cat_id })" uib-tooltip="Edit"><em class="fa fa-edit"></em></a></td>
+						</tr>
+						
+						<tr ng-if="model.categories.length <= 0">
+							<td colspan="6">No records found</td>
+						</tr>
+						
+					</tbody>
+					</table>
+					
+				</div>
+			</div>
+			
+		</fieldset>				
+	</div>
+</div>
+<div class="clearfix"></div>

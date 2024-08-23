@@ -1,0 +1,61 @@
+<section class="wrapper pos-rel">
+	<sectionloader loading="model.sectionLoader"></sectionloader>
+	<div class="container-base">
+		<fieldset>    	
+			<legend>Article</legend>
+			
+			<div class="panel panel-default">
+				<div class="panel-body">
+					
+					<div class="form-group">
+						<label class="control-label">Topic*</label>
+						<input type="text" class="form-control" ng-model="model.formData.topic" />
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Category*</label>
+						<select class="form-control" ng-model="model.formData.category">
+							<option ng-repeat="category in model.categories" ng-value="category.cat_id" ng-selected="category.id == model.formData.category">{{ category.cat_name }}</option>
+						</select>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Breadcrumbs*</label>
+						<input type="text" class="form-control" ng-model="model.formData.breadCrumbs" />
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Keywords*</label>
+						<input type="text" class="form-control" ng-model="model.formData.keywords" />
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Description*</label>
+						<input type="text" class="form-control" ng-model="model.formData.description" />
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Demo Link</label>
+						<input type="text" class="form-control" ng-model="model.formData.demoLink" />
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Downloadable File</label>
+						<input type="text" class="form-control" ng-model="model.formData.downloadFile" />
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Content*</label>
+						<div ckeditor="options" ng-model="model.formData.content" ready="onReady()"></div>
+					</div>
+					
+					<div class="form-group text-right">
+						<button type="submit" class="btn btn-md btn-info" ng-click="save()">Submit</button>
+					</div>
+				</div>
+			</div>
+			
+		</fieldset>				
+	</div>
+</div>
+<div class="clearfix"></div>

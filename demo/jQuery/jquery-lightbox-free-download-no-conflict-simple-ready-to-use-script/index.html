@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="no conflict jQuery lightbox, jquery lightbox free download, simple jquery lightbox, jquery lightbox script for developers, no conflict jquery lightbox script" />
+<meta name="description" content="Simple jquery lightbox ready to use in your projects. This script is free from jquery confliction. This script wont conflict with your other jquery functions" />
+<title>Simple jQuery Lightbox ready to use script by Asif18.com</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+function load_as_lightbox(){ 
+	var DocumentHeight = $(document).height();
+	$('.as_lightbox_wrapper').css('height', DocumentHeight); // Set document height for As_Lightbox wrapper
+}
+function ShowLightBox(DivId){
+	$('.as_lightbox_wrapper').show(); // Show the wrapper
+	$('#'+DivId+'').show('slow'); // Show the Lightbox div, you can use another jQuery view functions such as fadeIn, fadeToggle for animations
+}
+function HideLightBox(DivId){
+	$('.as_lightbox_wrapper').hide('slow'); // Hide the As_Lightbox wrapper
+	$('#'+DivId+'').hide(); // Hide the div
+}
+$(document).ready(function(){
+	load_as_lightbox(); // call this function after document loads
+	$('#Show_Lightbox').click(function(){
+		ShowLightBox('Simple_Lightbox'); // call the As_Lightbox show function
+		return false;
+	});
+	$('#as_lightbox_close').click(function(){
+		HideLightBox('Simple_Lightbox'); // call the As_Lightbox close function
+		return false;
+	});
+});
+</script>
+<style type="text/css">
+.as_wrapper{
+	font-family:Arial;
+	color:#333;
+	font-size:14px;
+	padding:20px;
+	border:2px dashed #17A3F7;
+	width:500px;
+	margin:0 auto;
+	margin-top:50px;
+}
+</style>
+</head>
+
+<body>
+<!-- AS_lightbox div (division) starts -->
+<div class="as_lightbox_wrapper"></div> <!-- As_lightbox wrapper (half transparent background) -->
+<div class="as_lightbox_container" id="Simple_Lightbox"> <!-- Set ID As_Lightbox here -->
+	<div class="as_lightbox">
+		<div class="as_lightbox_close" id="as_lightbox_close">
+        	<img src="images/close_flat_icon.png" alt="Close Lightbox" title="Close" />
+        </div> <!-- As_Lightbox close icon -->
+        <div class="as_clear"></div>
+        <!-- As_Lightbox contents will starts here-->
+        <p>As-Lightbox content will goes here. You can add any contents Texts, Images, Videos here. It wont conflict will other scripts Simple jQuery show(), hide() gives this lightbox</p>
+        <!-- As_Lightbox contents ends here -->
+	</div>
+</div>
+<!-- AS_lightbox div (division) Ends -->
+<div class="as_wrapper">
+<h1>Simple no conflict jQuery lightbox script</h1>
+Simple jquery lightbox ready to use in your projects. This script is free from jquery confliction. This script wont conflict with your other jquery functions - no-conflict script
+<br/><br/>
+<a id="Show_Lightbox" class="as_a">Show Lightbox</a>
+</div>
+</body>
+</html>
